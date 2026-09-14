@@ -1,0 +1,15 @@
+{
+  "name": "Flutter & Android Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17"
+    }
+  },
+  "postCreateCommand": "bash -c 'mkdir -p /tmp/flutter && wget -qO- https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz | tar -xJ -C /tmp && mkdir -p /tmp/android-sdk/cmdline-tools/latest && wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O /tmp/cmdline-tools.zip && unzip -q /tmp/cmdline-tools.zip -d /tmp/cmdline-tools-temp && mv /tmp/cmdline-tools-temp/cmdline-tools/* /tmp/android-sdk/cmdline-tools/latest/ && rm -rf /tmp/cmdline-tools-temp /tmp/cmdline-tools.zip && yes | /tmp/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/tmp/android-sdk \"platform-tools\" \"platforms;android-33\" \"build-tools;33.0.2\"'",
+  "containerEnv": {
+    "PATH": "${containerEnv:PATH}:/tmp/flutter/bin:/tmp/android-sdk/cmdline-tools/latest/bin:/tmp/android-sdk/platform-tools",
+    "ANDROID_HOME": "/tmp/android-sdk",
+    "JAVA_HOME": "/usr/lib/jvm/msjava-17"
+  }
+}
